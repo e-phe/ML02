@@ -20,8 +20,10 @@ def simple_predict(x, theta):
     if (
         isinstance(x, np.ndarray)
         and x.size != 0
+        and len(x.shape) == 2
         and isinstance(theta, np.ndarray)
         and theta.size != 0
+        and len(theta.shape) == 2
         and x.shape[1] + 1 == theta.shape[0]
         and theta.shape[1] == 1
     ):
