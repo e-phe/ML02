@@ -21,6 +21,7 @@ def loss_(y, y_hat):
     if (
         isinstance(y, np.ndarray)
         and y.size != 0
+        and len(y.shape) == 2
         and isinstance(y_hat, np.ndarray)
         and y_hat.size != 0
         and y.shape == y_hat.shape
