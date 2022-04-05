@@ -23,6 +23,7 @@ def add_polynomial_features(x, power):
     if (
         isinstance(x, np.ndarray)
         and x.size != 0
+        and len(x.shape) == 2
         and x.shape[1] == 1
         and isinstance(power, int)
     ):

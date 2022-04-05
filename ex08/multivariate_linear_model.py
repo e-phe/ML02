@@ -33,10 +33,15 @@ class MyMultiLinearRegression:
         if (
             isinstance(x, np.ndarray)
             and x.size != 0
+            and len(x.shape) == 2
             and isinstance(y, np.ndarray)
             and y.size != 0
+            and len(y.shape) == 2
             and y.shape[1] == 1
             and x.shape[0] == y.shape[0]
+            and isinstance(self.theta, np.ndarray)
+            and self.theta.size != 0
+            and len(self.theta.shape) == 2
             and x.shape[1] + 1 == self.theta.shape[0]
             and self.theta.shape[1] == 1
         ):
@@ -51,6 +56,10 @@ class MyMultiLinearRegression:
         if (
             isinstance(x, np.ndarray)
             and x.size != 0
+            and len(x.shape) == 2
+            and isinstance(self.theta, np.ndarray)
+            and self.theta.size != 0
+            and len(self.theta.shape) == 2
             and x.shape[1] + 1 == self.theta.shape[0]
             and self.theta.shape[1] == 1
         ):
@@ -62,10 +71,13 @@ class MyMultiLinearRegression:
         if (
             isinstance(x, np.ndarray)
             and x.size != 0
+            and len(x.shape) == 2
             and isinstance(y, np.ndarray)
             and y.size != 0
+            and len(y.shape) == 2
             and isinstance(predict, np.ndarray)
             and predict.size != 0
+            and len(predict.shape) == 2
             and x.shape[0] == y.shape[0]
             and y.shape == predict.shape
         ):
@@ -83,6 +95,7 @@ class MyMultiLinearRegression:
         if (
             isinstance(y, np.ndarray)
             and y.size != 0
+            and len(y.shape) == 2
             and isinstance(y_hat, np.ndarray)
             and y_hat.size != 0
             and y.shape == y_hat.shape
