@@ -27,12 +27,15 @@ def fit_(x, y, theta, alpha, max_iter):
     if (
         isinstance(x, np.ndarray)
         and x.size != 0
+        and len(x.shape) == 2
         and isinstance(y, np.ndarray)
         and y.size != 0
+        and len(y.shape) == 2
         and y.shape[1] == 1
         and x.shape[0] == y.shape[0]
         and isinstance(theta, np.ndarray)
         and theta.size != 0
+        and len(theta.shape) == 2
         and theta.shape[1] == 1
         and x.shape[1] + 1 == theta.shape[0]
         and isinstance(alpha, float)
@@ -40,7 +43,7 @@ def fit_(x, y, theta, alpha, max_iter):
     ):
         x = np.insert(x, 0, values=1.0, axis=1).astype(float)
         for _ in range(max_iter):
-            gradient = np.dot(x.transpose(), x @ theta - y) / x.shape[0]
+            gradient = x.T @ (x @ theta - y) / x.shape[0]
             theta = theta - alpha * gradient
         return theta
     return
