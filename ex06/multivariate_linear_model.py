@@ -26,7 +26,7 @@ class MyLinearRegression:
             return
 
     def fit_(self, x, y):
-        if self.check_matrix(x) and self.check_matrix(y) and x.shape == y.shape:
+        if check_matrix(x) and check_matrix(y) and x.shape == y.shape:
             x = np.insert(x, 0, values=1.0, axis=1).astype(float)
             for _ in range(self.max_iter):
                 gradient = np.dot(np.transpose(x), x @ self.theta - y) / x.shape[0]
@@ -34,15 +34,15 @@ class MyLinearRegression:
             return self.theta
 
     def predict_(self, x):
-        if self.check_matrix(x):
+        if check_matrix(x):
             x = np.insert(x, 0, values=1.0, axis=1).astype(float)
             return x @ self.theta
 
     def plot_(self, x, y, predict):
         if (
-            self.check_matrix(x)
-            and self.check_matrix(y)
-            and self.check_matrix(predict)
+            check_matrix(x)
+            and check_matrix(y)
+            and check_matrix(predict)
             and x.shape == y.shape
             and x.shape == predict.shape
         ):
@@ -55,17 +55,19 @@ class MyLinearRegression:
             plt.show()
 
     def mse_(self, y, predict):
-        if (
-            self.check_matrix(y)
-            and self.check_matrix(predict)
-            and y.shape == predict.shape
-        ):
+        if check_matrix(y) and check_matrix(predict) and y.shape == predict.shape:
             return np.square(predict - y).sum() / y.shape[0]
 
-    def check_matrix(self, matrix):
-        if isinstance(matrix, np.ndarray) and matrix.size != 0 and matrix.shape[1] == 1:
-            return True
-        exit("Error matrix")
+
+def check_matrix(matrix):
+    if (
+        isinstance(matrix, np.ndarray)
+        and matrix.size != 0
+        and len(matrix.shape) == 2
+        and matrix.shape[1] == 1
+    ):
+        return True
+    exit("Error matrix")
 
 
 class MyMultiLinearRegression:
@@ -97,12 +99,11 @@ class MyMultiLinearRegression:
         if (
             isinstance(x, np.ndarray)
             and x.size != 0
-            and isinstance(y, np.ndarray)
-            and y.size != 0
-            and y.shape[1] == 1
+            and len(x.shape) == 2
+            and check_matrix(y)
             and x.shape[0] == y.shape[0]
+            and check_matrix(self.theta)
             and x.shape[1] + 1 == self.theta.shape[0]
-            and self.theta.shape[1] == 1
         ):
             x = np.insert(x, 0, values=1.0, axis=1).astype(float)
             for _ in range(self.max_iter):
@@ -115,8 +116,9 @@ class MyMultiLinearRegression:
         if (
             isinstance(x, np.ndarray)
             and x.size != 0
+            and len(x.shape) == 2
+            and check_matrix(self.theta)
             and x.shape[1] + 1 == self.theta.shape[0]
-            and self.theta.shape[1] == 1
         ):
             x = np.insert(x, 0, values=1.0, axis=1).astype(float)
             return x @ self.theta
@@ -126,11 +128,10 @@ class MyMultiLinearRegression:
         if (
             isinstance(x, np.ndarray)
             and x.size != 0
-            and isinstance(y, np.ndarray)
-            and y.size != 0
-            and isinstance(predict, np.ndarray)
-            and predict.size != 0
+            and len(x.shape) == 2
+            and check_matrix(y)
             and x.shape[0] == y.shape[0]
+            and check_matrix(predict)
             and y.shape == predict.shape
         ):
             for i in range(x.shape[1]):
@@ -144,14 +145,7 @@ class MyMultiLinearRegression:
 
     def mse_(self, y, y_hat):
         y = self.predict_(y)
-        if (
-            isinstance(y, np.ndarray)
-            and y.size != 0
-            and isinstance(y_hat, np.ndarray)
-            and y_hat.size != 0
-            and y.shape == y_hat.shape
-            and y.shape[1] == 1
-        ):
+        if check_matrix(y) and check_matrix(y_hat) and y.shape == y_hat.shape:
             return np.square(y_hat - y).sum() / y.shape[0]
         return
 
