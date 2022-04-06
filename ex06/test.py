@@ -8,7 +8,7 @@ import pandas as pd
 import numpy as np
 
 if __name__ == "__main__":
-    print("Linear Regresion\n")
+    print("Linear Regresion")
     data = pd.read_csv("../resources/spacecraft_data.csv")
     X = np.array(data[["Age"]])
     Y = np.array(data[["Sell_price"]])
@@ -22,24 +22,25 @@ if __name__ == "__main__":
         myLR_age.mse_(X[:, 0].reshape(-1, 1), Y)
         == mean_squared_error(X[:, 0].reshape(-1, 1), Y)
     )
+    print()
 
-    # data = pd.read_csv("../resources/are_blue_pills_magics.csv")
-    # Xpill = np.array(data["Micrograms"]).reshape(-1, 1)
-    # Yscore = np.array(data["Score"]).reshape(-1, 1)
+    data = pd.read_csv("../resources/are_blue_pills_magics.csv")
+    Xpill = np.array(data["Micrograms"]).reshape(-1, 1)
+    Yscore = np.array(data["Score"]).reshape(-1, 1)
 
-    # linear_model1 = MyLR(np.array([[89.0], [-8]]))
-    # Y_model1 = linear_model1.predict_(Xpill)
-    # print(linear_model1.mse_(Yscore, Y_model1))
-    # # Output: 57.60304285714282
-    # print(linear_model1.mse_(Yscore, Y_model1) == mean_squared_error(Yscore, Y_model1))
+    linear_model1 = MyLR(np.array([[89.0], [-8]]))
+    Y_model1 = linear_model1.predict_(Xpill)
+    print(linear_model1.mse_(Yscore, Y_model1))
+    # Output: 57.60304285714282
+    print(linear_model1.mse_(Yscore, Y_model1) == mean_squared_error(Yscore, Y_model1))
 
-    # linear_model2 = MyLR(np.array([[89.0], [-6]]))
-    # Y_model2 = linear_model2.predict_(Xpill)
-    # print(linear_model2.mse_(Yscore, Y_model2))
-    # # Output: 232.16344285714285
-    # print(linear_model2.mse_(Yscore, Y_model2) == mean_squared_error(Yscore, Y_model2))
+    linear_model2 = MyLR(np.array([[89.0], [-6]]))
+    Y_model2 = linear_model2.predict_(Xpill)
+    print(linear_model2.mse_(Yscore, Y_model2))
+    # Output: 232.16344285714285
+    print(linear_model2.mse_(Yscore, Y_model2) == mean_squared_error(Yscore, Y_model2))
 
-    print("\nMultivariate Linear Regresion\n")
+    print("\nMultivariate Linear Regresion")
     data = pd.read_csv("../resources/spacecraft_data.csv")
     X = np.array(data[["Age", "Thrust_power", "Terameters"]])
     Y = np.array(data[["Sell_price"]])
