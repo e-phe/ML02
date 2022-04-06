@@ -172,8 +172,8 @@ if __name__ == "__main__":
         mlr = MyLinearRegression(alpha=alpha[i])
         print(mlr.fit_(x, y))
         predict = mlr.predict_(x)
-        mlr.plot_(x, y, predict)
         print("MSE", mlr.mse_(y, predict))
+        mlr.plot_(x, y, predict)
 
     x = data[:, :-1]
     y = data[:, [data.shape[1] - 1]]
@@ -181,5 +181,5 @@ if __name__ == "__main__":
     mmlr = MyMultiLinearRegression()
     print(mmlr.fit_(x, y))
     predict = mmlr.predict_(x)
-    mmlr.plot_(x, y, predict)
     print("MSE", mmlr.mse_(x, y))
+    mmlr.plot_(x, y, predict)
