@@ -53,6 +53,8 @@ if __name__ == "__main__":
     for i in range(1, 5):
         my_lr = MyLR(theta[i].reshape(-1, 1), 1e-7, 10000)
         x_ = vander_matrix(x, y)
+        if i == 1:
+            my_lr = MyLR(np.ones(x_.shape[1] + 1).reshape(-1, 1), 1e-7, 10000)
 
         if i == 1:
             my_lr.fit_(x_, y)
@@ -66,7 +68,6 @@ if __name__ == "__main__":
         for j in range(x.shape[1]):
             axis[j, i - 1].set_xlabel(x_name[j])
             axis[j, i - 1].set_ylabel("target (in trantorian unit)")
-            axis[j, i - 1].set_ylim([1e5, 1e6])
 
             axis[j, i - 1].scatter(x[:, j], y, label="dataset_train")
             axis[j, i - 1].scatter(x[:, j], y_hat, marker=".", label="prediction")

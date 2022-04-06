@@ -23,8 +23,10 @@ def data_spliter(x, y, proportion):
     if (
         isinstance(x, np.ndarray)
         and x.size != 0
+        and len(x.shape) == 2
         and isinstance(y, np.ndarray)
         and y.size != 0
+        and len(y.shape) == 2
         and x.shape[0] == y.shape[0]
         and y.shape[1] == 1
         and isinstance(proportion, float)
