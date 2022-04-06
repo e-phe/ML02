@@ -164,6 +164,7 @@ if __name__ == "__main__":
     except:
         exit("FileNotFoundError")
 
+    print("Univariate Linear Regression")
     alpha = [1e-3, 1.5e-4, 2.2e-4]
     for i in range(data.shape[1] - 1):
         x = data[:, [i]]
@@ -178,6 +179,7 @@ if __name__ == "__main__":
     x = data[:, :-1]
     y = data[:, [data.shape[1] - 1]]
 
+    print("Multivariate Linear Regression")
     mmlr = MyMultiLinearRegression()
     print(mmlr.fit_(x, y))
     predict = mmlr.predict_(x)
